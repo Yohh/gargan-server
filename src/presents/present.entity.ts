@@ -1,15 +1,12 @@
-import { UserToPresent } from 'src/user-to-present/user-to-present.entity';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   ManyToOne,
-  ManyToMany,
-  JoinTable,
   OneToMany,
 } from 'typeorm';
 import { List } from '../lists/list.entity';
-import { User } from '../users/user.entity';
+import { UserToPresent } from '../user-to-present/user-to-present.entity';
 
 @Entity()
 export class Present {
