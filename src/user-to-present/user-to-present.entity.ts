@@ -7,24 +7,26 @@ export class UserToPresent {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ default: false })
   isExpensive: boolean;
 
-  @Column()
+  @Column({ default: true })
   offeror: boolean;
 
-  @Column()
+  @Column({ default: false })
   partOfferor: boolean;
 
-  @Column()
+  @Column({ default: 0 })
   amount: number;
 
-  @Column()
+  @Column({ default: 0 })
   percentage: number;
 
-  @ManyToOne(() => User, (user) => user.userToPresents)
+  @ManyToOne(() => User, (user) => user.userToPresents, { onDelete: 'CASCADE' })
   user: User;
 
-  @ManyToOne(() => Present, (present) => present.userToPresents)
+  @ManyToOne(() => Present, (present) => present.userToPresents, {
+    onDelete: 'CASCADE',
+  })
   present: Present;
 }

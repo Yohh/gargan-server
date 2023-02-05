@@ -3,9 +3,9 @@ import {
   Post,
   Body,
   Get,
-  Put,
   Delete,
   Param,
+  Patch,
 } from '@nestjs/common';
 import { UserToPresent } from './user-to-present.entity';
 import { UserToPresentService } from './user-to-present.service';
@@ -29,9 +29,9 @@ export class UserToPresentController {
     return this.service.saveUserToPresent(userToPresent);
   }
 
-  @Put()
-  update(@Body() userToPresent: UserToPresent) {
-    return this.service.saveUserToPresent(userToPresent);
+  @Patch(':id')
+  update(@Param() params, @Body() data: {}) {
+    return this.service.updateUserToPresent(params, data);
   }
 
   @Delete(':id')

@@ -16,16 +16,19 @@ export class Present {
   @Column({ length: 50 })
   name: string;
 
-  @Column()
+  @Column({ length: 10 })
+  tag: string;
+
+  @Column({ default: false })
   isUrgent: boolean;
 
   @Column({ length: 100 })
   link: string;
 
-  @Column()
+  @Column({ default: 0 })
   expensiveRate: number;
 
-  @ManyToOne(() => List, (list) => list.presents)
+  @ManyToOne(() => List, (list) => list.presents, { onDelete: 'CASCADE' })
   list: List;
 
   @OneToMany(() => UserToPresent, (userToPresent) => userToPresent.present)

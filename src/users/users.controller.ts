@@ -6,6 +6,7 @@ import {
   Put,
   Delete,
   Param,
+  Patch,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
@@ -29,9 +30,9 @@ export class UsersController {
     return this.service.saveUser(user);
   }
 
-  @Put()
-  update(@Body() user: User) {
-    return this.service.saveUser(user);
+  @Patch(':id')
+  update(@Param() params, @Body() data: {}) {
+    return this.service.updateUser(params, data);
   }
 
   @Delete(':id')

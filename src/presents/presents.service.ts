@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/users/user.entity';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { Present } from './present.entity';
 
 @Injectable()
@@ -27,6 +27,10 @@ export class PresentsService {
 
   savePresent(present: Present): Promise<Present> {
     return this.presentsRepository.save(present);
+  }
+
+  updatePresent(id: number, data: {}): Promise<UpdateResult> {
+    return this.presentsRepository.update(id, data);
   }
 
   deletePresent(present: Present): void {

@@ -4,8 +4,8 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
-  Put,
 } from '@nestjs/common';
 import { PresentsService } from './presents.service';
 import { Present } from './present.entity';
@@ -29,9 +29,9 @@ export class PresentsController {
     return this.service.savePresent(present);
   }
 
-  @Put()
-  update(@Body() present: Present) {
-    return this.service.savePresent(present);
+  @Patch(':id')
+  update(@Param() params, @Body() data: {}) {
+    return this.service.updatePresent(params, data);
   }
 
   @Delete(':id')

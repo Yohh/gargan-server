@@ -19,10 +19,10 @@ export class List {
   @Column()
   main: boolean;
 
-  @Column({ length: 10 })
-  category: string;
+  @Column()
+  child: boolean;
 
-  @ManyToOne(() => User, (user) => user.lists)
+  @ManyToOne(() => User, (user) => user.lists, { onDelete: 'CASCADE' })
   user: User;
 
   @OneToMany(() => Present, (present) => present.list)
