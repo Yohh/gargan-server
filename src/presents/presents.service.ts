@@ -12,13 +12,16 @@ export class PresentsService {
   ) {}
 
   async getPresents(): Promise<Present[]> {
-    return await this.presentsRepository.find();
+    return await this.presentsRepository.find({
+      relations: { userToPresents: true },
+    });
   }
 
   async getPresent(id: number): Promise<Present[]> {
     return await this.presentsRepository.find({
       select: ['name', 'isUrgent', 'link', 'expensiveRate'],
       where: [{ id: id }],
+      relations: { userToPresents: true },
     });
   }
 

@@ -14,8 +14,13 @@ import { UserToPresentService } from './user-to-present.service';
 export class UserToPresentController {
   constructor(private service: UserToPresentService) {}
 
+  @Get()
+  get() {
+    return this.service.getUserToPresents();
+  }
+
   @Get(':id')
-  get(@Param() params) {
+  getById(@Param() params) {
     return this.service.getUserToPresent(params.id);
   }
 

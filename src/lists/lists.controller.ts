@@ -14,8 +14,13 @@ import { ListsService } from './lists.service';
 export class ListsController {
   constructor(private service: ListsService) {}
 
+  @Get()
+  get() {
+    return this.service.getLists();
+  }
+
   @Get(':id')
-  get(@Param() params) {
+  getById(@Param() params) {
     return this.service.getList(params.id);
   }
 

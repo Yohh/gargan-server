@@ -14,8 +14,13 @@ import { Present } from './present.entity';
 export class PresentsController {
   constructor(private service: PresentsService) {}
 
+  @Get()
+  get() {
+    return this.service.getPresents();
+  }
+
   @Get(':id')
-  get(@Param() params) {
+  getById(@Param() params) {
     return this.service.getPresent(params.id);
   }
 

@@ -11,13 +11,16 @@ export class UserToPresentService {
   ) {}
 
   async getUserToPresents(): Promise<UserToPresent[]> {
-    return await this.UserToPresentRepository.find();
+    return await this.UserToPresentRepository.find({
+      relations: { user: true, present: true },
+    });
   }
 
   async getUserToPresent(id: number): Promise<UserToPresent[]> {
     return await this.UserToPresentRepository.find({
       select: ['isExpensive', 'offeror', 'partOfferor', 'amount', 'percentage'],
       where: [{ id: id }],
+      relations: { user: true, present: true },
     });
   }
 
