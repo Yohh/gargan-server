@@ -1,0 +1,31 @@
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { UserToPresent } from './user-to-present.entity';
+
+@Injectable()
+export class UserToPresentService {
+  constructor(
+    @InjectRepository(UserToPresent)
+    private UserToPresentRepository: Repository<UserToPresent>,
+  ) {}
+
+  async getUserToPresents(): Promise<UserToPresent[]> {
+    return await this.UserToPresentRepository.find();
+  }
+
+  async getUserToPresent(id: number): Promise<UserToPresent[]> {
+    return await this.UserToPresentRepository.find({
+      select: ['isExpensive', 'offeror', 'partOfferor', 'amount', 'percentage'],
+      where: [{ id: id }],
+    });
+  }
+
+  saveUserToPresent(userToPresent: UserToPresent): Promise<UserToPresent> {
+    return this.UserToPresentRepository.save(userToPresent);
+  }
+
+  deleteUserToPresent(userToPresent: UserToPresent): void {
+    this.UserToPresentRepository.delete(userToPresent);
+  }
+}
